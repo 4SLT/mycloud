@@ -91,6 +91,7 @@ export const request = (url, body, type) => {
           type: 'NO_MAPPING',
           msg: '404'
         }, '*')
+        this.$router.push('/404')
         return Promise.reject(new Error('请求失败: 404'))
       default:
         break

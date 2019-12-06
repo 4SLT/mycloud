@@ -31,7 +31,13 @@ export default new Router({
       path: '/hello',
       name: 'HelloWorld',
       component: HelloWorld
-    }
+    },
+    {
+      path: '*',
+      redirect: '/404',
+      name: 'notFound',
+      hidden: true
+    },
   ]
 })
 
