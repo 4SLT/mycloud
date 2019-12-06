@@ -1,0 +1,13 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    name: fsltcloud
+    url: jdbc:mysql://127.0.0.1:3306/fsltcloud?serverTimezone=GMT%2B8&useSSL=FALSE
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mappers/**/*.xml
