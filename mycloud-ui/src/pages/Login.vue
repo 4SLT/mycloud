@@ -3,10 +3,10 @@
 
     <el-row class="login-wrapper">
 
-      <el-form :model="loginForm" label-width="80px">
+      <el-form :model="loginForm" label-width="auto">
         <el-form-item label="用户名">
           <el-input
-            v-model="loginForm.username"
+            v-model="loginForm.userName"
             placeholder="请输入用户名"
             prefix-icon="el-icon-user"
             autocomplete="off"></el-input>
@@ -14,12 +14,23 @@
 
         <el-form-item label="密码">
           <el-input
-            v-model="loginForm.password"
+            v-model="loginForm.userPassword"
             placeholder="请输入密码"
             show-password
             prefix-icon="el-icon-unlock"
             autocomplete="off"></el-input>
         </el-form-item>
+
+        <el-col :span="12">
+          <el-form-item>
+            <el-button @click="submitLogin()">登录</el-button>
+          </el-form-item>
+        </el-col>
+
+        <el-col :span="12">
+          <el-button @click="register">注册</el-button>
+        </el-col>
+
       </el-form>
 
     </el-row>
@@ -72,8 +83,8 @@
     data() {
       return {
         loginForm: {
-          username: '',
-          password: ''
+          userName: '',
+          userPassword: ''
         },
 
         show2: true,
@@ -92,6 +103,11 @@
         this.show2 = !this.show2
       },
       submitLogin() {
+        test.requestList(this.loginForm).then(res => {
+          console.log(res.re)
+        })
+      },
+      register() {
 
       },
       test() {

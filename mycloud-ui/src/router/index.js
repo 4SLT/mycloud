@@ -7,7 +7,6 @@ import Login from '@/pages/Login'
 import Index from '@/pages/Index'
 import _404 from '@/pages/404'
 
-
 Vue.use(Router)
 
 export default new Router({

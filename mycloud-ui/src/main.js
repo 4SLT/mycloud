@@ -10,7 +10,6 @@ import 'element-ui/lib/theme-red/index.css'
 
 //不显示生产者消息
 Vue.config.productionTip = false
-
 Vue.prototype.axios = axios
 
 Vue.use(ElementUI)
@@ -19,7 +18,7 @@ Vue.use(ElementUI)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
+  router,//注册router
   components: {App},
   template: '<App/>'
 })

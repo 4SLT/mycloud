@@ -1,16 +1,17 @@
-package com.fslt.mycloudserver.modules.example.domain;
+package com.fslt.mycloudserver.modules.user.domain;
 
-/**
- * @description: CloudUser
- * @date: 2019/12/6 23:14
- * @author: zongxiong.lin
- * @version: 1.0
- */
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+
+/**
+ * @description: CloudUser
+ * @date: 2019/12/11 16:04
+ * @author: zongxiong.lin
+ * @version: 1.0
+ */
 
 @Data
 public class CloudUser {
