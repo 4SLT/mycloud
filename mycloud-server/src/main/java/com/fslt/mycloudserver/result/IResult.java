@@ -24,24 +24,24 @@ public interface IResult<T> {
      */
     Integer SERVICE_ERROR_STATUS = -2;
 
-    public int getStatus();
-
-    public void setStatus(int status);
-
-    public String getMsg();
-
-    public void setMsg(String msg);
-
-    public T getRe();
-
-    public void setRe(T re);
-
-    public String getCode();
-
-    public void setCode(String code);
-
-    public String getTrace();
-
-    public void setTrace(String trace);
+//    public int getStatus();
+//
+//    public void setStatus(int status);
+//
+//    public String getMsg();
+//
+//    public void setMsg(String msg);
+//
+//    public T getRe();
+//
+//    public void setRe(T re);
+//
+//    public String getCode();
+//
+//    public void setCode(String code);
+//
+//    public String getTrace();
+//
+//    public void setTrace(String trace);
 
 }

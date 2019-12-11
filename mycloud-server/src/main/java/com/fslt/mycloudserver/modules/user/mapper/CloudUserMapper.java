@@ -13,6 +13,13 @@ import java.util.List;
  */
 public interface CloudUserMapper {
 
+
+    /**
+     * 获取用户信息列表
+     *
+     * @return: List<CloudUser>
+     * @param: null
+     */
     List<CloudUser> getList();
 
 }

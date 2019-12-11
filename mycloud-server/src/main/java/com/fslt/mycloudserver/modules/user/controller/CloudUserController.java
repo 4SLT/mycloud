@@ -23,10 +23,6 @@ public class CloudUserController {
     @Resource
     private CloudUserService cloudUserService;
 
-    @RequestMapping(value = "/world", method = RequestMethod.GET)
-    public String hello() {
-        return "Hello World";
-    }
 
     @RequestMapping(value = "/getList")
     public Object getList(CloudUser cloudUser) {

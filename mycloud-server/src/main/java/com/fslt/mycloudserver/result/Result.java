@@ -1,5 +1,6 @@
 package com.fslt.mycloudserver.result;
 
+import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -15,7 +16,7 @@ import java.util.List;
  * @author: zongxiong.lin
  * @version: 1.0
  */
-
+@Data
 public class Result<T> implements Serializable, IResult<T> {
 
     public static final Logger logger = LoggerFactory.getLogger(Result.class);
@@ -147,56 +148,6 @@ public class Result<T> implements Serializable, IResult<T> {
         return result;
     }
 
-
-    @Override
-    public int getStatus() {
-        return status;
-    }
-
-    @Override
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    @Override
-    public String getMsg() {
-        return msg;
-    }
-
-    @Override
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    @Override
-    public T getRe() {
-        return re;
-    }
-
-    @Override
-    public void setRe(T re) {
-        this.re = re;
-    }
-
-    @Override
-    public String getCode() {
-        return code;
-    }
-
-    @Override
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    @Override
-    public String getTrace() {
-        return trace;
-    }
-
-    @Override
-    public void setTrace(String trace) {
-        this.trace = trace;
-    }
 
 
     @Override
