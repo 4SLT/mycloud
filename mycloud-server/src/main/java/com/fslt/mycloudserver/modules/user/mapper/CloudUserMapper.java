@@ -13,7 +13,6 @@ import java.util.List;
  */
 public interface CloudUserMapper {
 
-
     /**
      * 获取用户信息列表
      *

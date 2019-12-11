@@ -2,7 +2,6 @@ package com.fslt.mycloudserver.modules.user.service;
 
 
 import com.fslt.mycloudserver.modules.user.domain.CloudUser;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

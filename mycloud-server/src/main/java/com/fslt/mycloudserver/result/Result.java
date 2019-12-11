@@ -149,7 +149,6 @@ public class Result<T> implements Serializable, IResult<T> {
     }
 
 
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Result{");

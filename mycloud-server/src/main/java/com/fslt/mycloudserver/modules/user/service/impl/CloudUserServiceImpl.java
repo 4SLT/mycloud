@@ -20,6 +20,7 @@ public class CloudUserServiceImpl implements CloudUserService {
     @Resource
     private CloudUserMapper cloudUserMapper;
 
+
     @Override
     public List<CloudUser> getList() {
         return cloudUserMapper.getList();

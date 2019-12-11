@@ -4,7 +4,6 @@ import com.fslt.mycloudserver.modules.user.domain.CloudUser;
 import com.fslt.mycloudserver.modules.user.service.CloudUserService;
 import com.fslt.mycloudserver.result.Result;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
