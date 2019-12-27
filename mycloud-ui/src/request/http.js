@@ -55,49 +55,49 @@ export const request = (url, body, type) => {
   }
   return axios.request(query)
     .then(res => {
-    return new Promise((resolve, reject) => {
-      if (!res.data) {
-        console.log('request >> ', query);
-        reject(new Error('服务器响应超时'));
-        return
-      } else {
-        if (res.data.status === 0 || res.data.status === -1) {
-          resolve(res.data)
+      return new Promise((resolve, reject) => {
+        if (!res.data) {
+          console.log('request >> ', query);
+          reject(new Error('服务器响应超时'));
+          return
         } else {
-          reject(res.data)
+          if (res.data.status === 0 || res.data.status === -1) {
+            resolve(res.data)
+          } else {
+            reject(res.data)
+          }
         }
+      })
+    }, e => {
+      console.log(e)
+      switch (e.response.status) {
+        // 未登录访问
+        case 401:
+          top.window.postMessage({
+            type: 'NO_LOGIN',
+            msg: '401'
+          }, '*')
+          this.$router.push('/login')
+          return Promise.reject(e.response)
+        // 无权限操作
+        case 403:
+          top.window.postMessage({
+            type: 'NO_PERMISSION',
+            msg: '403'
+          }, '*')
+          return Promise.reject(new Error('无权访问此资源'))
+        case 404: // 服务器找不到页面
+          top.window.postMessage({
+            type: 'NO_MAPPING',
+            msg: '404'
+          }, '*')
+          this.$router.push('/404')
+          return Promise.reject(new Error('请求失败: 404'))
+        default:
+          break
       }
+      return Promise.reject(new Error('请求失败'))
     })
-  }, e => {
-    console.log(e)
-    switch (e.response.status) {
-      // 未登录访问
-      case 401:
-        top.window.postMessage({
-          type: 'NO_LOGIN',
-          msg: '401'
-        }, '*')
-        this.$router.push('/login')
-        return Promise.reject(e.response)
-      // 无权限操作
-      case 403:
-        top.window.postMessage({
-          type: 'NO_PERMISSION',
-          msg: '403'
-        }, '*')
-        return Promise.reject(new Error('无权访问此资源'))
-      case 404: // 服务器找不到页面
-        top.window.postMessage({
-          type: 'NO_MAPPING',
-          msg: '404'
-        }, '*')
-        this.$router.push('/404')
-        return Promise.reject(new Error('请求失败: 404'))
-      default:
-        break
-    }
-    return Promise.reject(new Error('请求失败'))
-  })
     .catch(e => {
       console.warn('--------------', e)
       vue.prototype.$message.error(e && e.message ? e.message : '系统错误')

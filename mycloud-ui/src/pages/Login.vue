@@ -75,7 +75,6 @@
 
 
 <script>
-  import {test} from '@/request/api';
   import {userLogin} from '@/request/api';
 
 
@@ -98,21 +97,30 @@
     methods: {
 
       change() {
-        this.show2 = !this.show2
+        this.show2 = !this.show2;
       },
+
       submitLogin() {
         userLogin.login(this.loginForm).then(res => {
-          console.log(res.re)
+          if (res.status == 0) {
+            this.$message(res.re);
+            this.$router.push({path: '/index'})
+          } else {
+            this.$message({
+              showClose: true,
+              message: res.msg,
+              type: 'error'
+            });
+          }
         })
       },
+
       register() {
-        this.$router.push({path: '/register'})
+        this.$router.push({path: '/register'});
       },
+
       test() {
-        var id = 1;
-        test.requestList({id}).then(res => {
-          console.log(res.re)
-        })
+
       },
 
     }

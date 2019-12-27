@@ -63,7 +63,7 @@
           userName: '',
           userPassword: '',
           email: '',
-          phone:'',
+          phone: '',
         },
 
       }
@@ -73,6 +73,17 @@
       submitRegister() {
         userLogin.register(this.registerForm).then(res => {
           console.log(res.re)
+
+          if (res.status == 0) {
+            this.$message(res.re);
+            this.$router.push({path: '/login'});
+          } else {
+            this.$message({
+              showClose: true,
+              message: res.msg,
+              type: 'error'
+            });
+          }
         })
       },
 
