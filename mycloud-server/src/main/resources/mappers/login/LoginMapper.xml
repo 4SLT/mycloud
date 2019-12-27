@@ -16,20 +16,44 @@
     </sql>
 
 
-    <select id="login" parameterType="com.fslt.mycloudserver.modules.user.domain.CloudUser"
+    <select id="getPasswordByUserName" parameterType="com.fslt.mycloudserver.modules.user.domain.CloudUser"
             resultType="java.lang.String">
         SELECT
-        <include refid="selectLogin">
-            <property name="table" value="cu"/>
-        </include>
+            cu.user_password AS userPassword
         FROM
-        t_cloud_user cu
+            t_cloud_user cu
         WHERE
-        cu.user_name = #{userName, jdbcType = VARCHAR}
+            cu.user_name = #{userName, jdbcType = VARCHAR}
+            AND cu.STATUS = 1
+            AND cu.delete_flag = 0
+    </select>
+
+    <select id="queryPhone" parameterType="com.fslt.mycloudserver.modules.user.domain.CloudUser"
+            resultType="java.lang.Integer">
+        SELECT
+            count( * )
+        FROM
+            t_cloud_user cu
+        WHERE
+            cu.phone = #{phone, jdbcType = VARCHAR}
+            AND cu.STATUS = 1
+            AND cu.delete_flag = 0
+    </select>
+
+    <select id="queryEmail" parameterType="com.fslt.mycloudserver.modules.user.domain.CloudUser"
+            resultType="java.lang.Integer">
+        SELECT
+            count( * )
+        FROM
+            t_cloud_user cu
+        WHERE
+            cu.email = #{email, jdbcType = VARCHAR}
+            AND cu.STATUS = 1
+            AND cu.delete_flag = 0
     </select>
 
     <select id="getRegisterFlag" parameterType="com.fslt.mycloudserver.modules.user.domain.CloudUser"
-    resultType="java.lang.Integer">
+            resultType="java.lang.Integer">
         SELECT
             COUNT( * )
         FROM

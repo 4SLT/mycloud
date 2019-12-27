@@ -10,5 +10,6 @@ export const test = {
 
 //登陆
 export const userLogin = {
-  register: body => request('/login/register', body, 'get'),
+  register: body => request('/login/register', body, 'post'),
+  login:body => request('/login/login',body,'post')
 }

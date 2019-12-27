@@ -4,6 +4,7 @@ import com.fslt.mycloudserver.modules.login.mapper.LoginMapper;
 import com.fslt.mycloudserver.modules.login.service.LoginService;
 import com.fslt.mycloudserver.modules.user.domain.CloudUser;
 import com.fslt.mycloudserver.result.Result;
+import com.fslt.mycloudserver.utils.EncryptionUtil;
 import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j;
 import org.slf4j.Logger;
@@ -28,19 +29,21 @@ public class LoginServiceImpl implements LoginService {
     private LoginMapper loginMapper;
 
     /**
-     * 登陆功能
+     * 登陆
      *
      * @param cloudUser
      * @return
      */
     @Override
     public Result login(CloudUser cloudUser) {
+        EncryptionUtil.encryptUser(cloudUser);
+
         Integer registerFlag = loginMapper.getRegisterFlag(cloudUser);
         if (!new Integer(1).equals(registerFlag)) {
             return Result.getServiceError("此账号还未注册", "-1");
         }
-        String password = loginMapper.login(cloudUser);
-        if (password.equals(cloudUser.getUserPassword())) {
+        String rightPassword = loginMapper.getPasswordByUserName(cloudUser);
+        if (rightPassword.equals(cloudUser.getUserPassword())) {
             return Result.getSuccessResult("登陆成功");
         } else {
             return Result.getServiceError("密码错误", "-1");
@@ -55,10 +58,20 @@ public class LoginServiceImpl implements LoginService {
      */
     @Override
     public Result register(CloudUser cloudUser) {
+        EncryptionUtil.encryptUser(cloudUser);
+
         logger.info("用户：{}正在注册，入参：{}", cloudUser.getUserName(), cloudUser.toString());
         Integer registerFlag = loginMapper.getRegisterFlag(cloudUser);
         if (new Integer(1).equals(registerFlag)) {
             return Result.getServiceError("此账号已被注册", "-1");
+        }
+        registerFlag = loginMapper.queryPhone(cloudUser);
+        if (new Integer(1).equals(registerFlag)) {
+            return Result.getServiceError("此手机号已被注册", "-1");
+        }
+        registerFlag = loginMapper.queryEmail(cloudUser);
+        if (new Integer(1).equals(registerFlag)) {
+            return Result.getServiceError("此邮箱已被注册", "-1");
         }
         try {
             loginMapper.register(cloudUser);

@@ -3,7 +3,7 @@
 
     <el-row class="login-wrapper">
 
-      <el-form :model="loginForm" label-width="auto">
+      <el-form :model="loginForm" label-width="80px">
         <el-form-item label="用户名">
           <el-input
             v-model="loginForm.userName"
@@ -37,7 +37,6 @@
 
 
     <el-row>
-      <el-button @click="login">登录</el-button>
       <el-button @click="test">测试</el-button>
     </el-row>
 
@@ -77,6 +76,8 @@
 
 <script>
   import {test} from '@/request/api';
+  import {userLogin} from '@/request/api';
+
 
   export default {
     name: "Login",
@@ -96,19 +97,16 @@
     },
     methods: {
 
-      login() {
-        this.$router.push({path: '/index'})
-      },
       change() {
         this.show2 = !this.show2
       },
       submitLogin() {
-        test.requestList(this.loginForm).then(res => {
+        userLogin.login(this.loginForm).then(res => {
           console.log(res.re)
         })
       },
       register() {
-
+        this.$router.push({path: '/register'})
       },
       test() {
         var id = 1;

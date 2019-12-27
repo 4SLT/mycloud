@@ -51,7 +51,7 @@ export const request = (url, body, type) => {
   if (type === 'get') {
     query.params = body
   } else {
-    query.data = body
+    query.data = QS.stringify(body)
   }
   return axios.request(query)
     .then(res => {

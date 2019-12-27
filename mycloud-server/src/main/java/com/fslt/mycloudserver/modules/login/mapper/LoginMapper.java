@@ -10,13 +10,30 @@ import com.fslt.mycloudserver.modules.user.domain.CloudUser;
  */
 public interface LoginMapper {
 
+
     /**
-     * 登陆
+     * 根据用户名获取密码
      *
      * @param cloudUser
      * @return
      */
-    String login(CloudUser cloudUser);
+    String getPasswordByUserName(CloudUser cloudUser);
+
+    /**
+     * 查询手机号是否存在
+     *
+     * @param cloudUser
+     * @return
+     */
+    Integer queryPhone(CloudUser cloudUser);
+
+    /**
+     * 查询邮箱是否存在
+     *
+     * @param cloudUser
+     * @return
+     */
+    Integer queryEmail(CloudUser cloudUser);
 
     /**
      * 判断当前用户是否已注册

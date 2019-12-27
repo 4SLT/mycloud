@@ -29,4 +29,10 @@ public class LoginController {
         return loginService.register(cloudUser);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/login")
+    public Result login(CloudUser cloudUser) {
+        return loginService.login(cloudUser);
+    }
+
 }
