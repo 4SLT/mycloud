@@ -26,4 +26,5 @@ public class CloudUserServiceImpl implements CloudUserService {
         return cloudUserMapper.getList();
     }
 
+
 }

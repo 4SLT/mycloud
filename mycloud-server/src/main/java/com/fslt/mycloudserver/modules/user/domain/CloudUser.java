@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -23,15 +24,17 @@ public class CloudUser {
     /**
      * 用户名
      */
+    @NotNull(message = "用户名不允许为空")
     private String userName;
     /**
      * 用户密码
      */
+    @NotNull(message = "用户密码不允许为空")
     private String userPassword;
     /**
      * 头像URL
      */
-    private String profilePhoneUrl;
+    private String profilePhotoUrl;
     /**
      * 手机号
      */

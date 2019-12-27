@@ -7,13 +7,12 @@
         ${table}.id AS id
         ,${table}.user_name AS userName
         ,${table}.user_password AS userPassword
-        ,${table}.profile_photo_url AS profilePhoneUrl
+        ,${table}.profile_photo_url AS profilePhotoUrl
         ,${table}.phone AS phone
         ,${table}.email AS email
         ,${table}.create_time AS createTime
         ,${table}.delete_flag AS deleteFlag
         ,${table}.status AS status
-
     </sql>
 
     <select id="getList"

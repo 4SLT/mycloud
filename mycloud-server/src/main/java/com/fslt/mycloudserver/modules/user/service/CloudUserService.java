@@ -21,4 +21,7 @@ public interface CloudUserService {
      */
     List<CloudUser> getList();
 
+
+
+
 }
