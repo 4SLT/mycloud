@@ -3,8 +3,8 @@ server:
 
 spring:
   datasource:
-    name: fsltcloud
-    url: jdbc:mysql://127.0.0.1:3306/fsltcloud?serverTimezone=GMT%2B8&useSSL=FALSE
+    name: mycloud
+    url: jdbc:mysql://47.100.138.188:3306/mycloud?serverTimezone=GMT%2B8&useSSL=FALSE
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
