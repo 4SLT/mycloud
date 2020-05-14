@@ -23,6 +23,8 @@ public class MyLock {
 
     private static ConcurrentHashMap<String, Thread> concurrentHashMap;
 
+    private static ThreadLink threadLink;
+
     static {
         try {
             Field f = Unsafe.class.getDeclaredField("theUnsafe");
@@ -31,6 +33,7 @@ public class MyLock {
             stateOffset = unsafe.objectFieldOffset(MyLock.class.getDeclaredField("state"));
 
             concurrentHashMap = new ConcurrentHashMap();
+            threadLink = new ThreadLink();
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -44,13 +47,17 @@ public class MyLock {
      */
     public void lock() {
         while (true) {
-            if (unsafe.compareAndSwapInt(this, stateOffset, 0, 1)) {
+            if (MyUnSafe.unsafe.compareAndSwapInt(this, stateOffset, 0, 1)) {
                 System.out.println("线程：" + Thread.currentThread().getName() + "获得了锁");
                 break;
             } else {
-                concurrentHashMap.put(Thread.currentThread().getName(), Thread.currentThread());
-                //挂起线程
-                unsafe.park(false, 0);
+//                concurrentHashMap.put(Thread.currentThread().getName(), Thread.currentThread());
+//                //挂起线程
+//                unsafe.park(false, 0);
+
+                threadLink.addWaiter();
+                MyUnSafe.unsafe.park(false, 0);
+
             }
         }
     }
@@ -60,13 +67,16 @@ public class MyLock {
      * 解锁
      */
     public void unLock() {
-        //重置标志位
-        unsafe.compareAndSwapInt(this, stateOffset, 1, 0);
-        //恢复挂起线程
-        for (Map.Entry<String, Thread> entry : concurrentHashMap.entrySet()) {
-            unsafe.unpark(entry.getValue());
-            concurrentHashMap.remove(entry.getKey());
-        }
+//        //重置标志位
+//        unsafe.compareAndSwapInt(this, stateOffset, 1, 0);
+//        //恢复挂起线程
+//        for (Map.Entry<String, Thread> entry : concurrentHashMap.entrySet()) {
+//            unsafe.unpark(entry.getValue());
+//            concurrentHashMap.remove(entry.getKey());
+//        }
+
+        MyUnSafe.unsafe.compareAndSwapInt(this, stateOffset, 1, 0);
+        threadLink.release();
 
     }
 
