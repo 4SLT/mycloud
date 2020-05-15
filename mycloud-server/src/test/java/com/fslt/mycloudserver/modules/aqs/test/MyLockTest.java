@@ -2,6 +2,8 @@ package com.fslt.mycloudserver.modules.aqs.test;
 
 import org.junit.jupiter.api.Test;
 
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
 import java.util.stream.IntStream;
 
 /**
@@ -22,10 +24,10 @@ class MyLockTest {
 
     @Test
     void testLockAndUnLock() throws InterruptedException {
-
+        this.getPid();
+        Thread.sleep(20000);
         IntStream.range(0, 3).mapToObj(i -> new Thread(() -> myBizMethod())).forEach(t -> t.start());
         Thread.currentThread().join(10000);
-
     }
 
     MyLock myLock = new MyLock();
@@ -40,6 +42,12 @@ class MyLockTest {
         } finally {
             myLock.unLock();
         }
+    }
+
+    private void getPid() {
+        RuntimeMXBean runtime = ManagementFactory.getRuntimeMXBean();
+        String name = runtime.getName();
+        System.out.println(name);
     }
 
 }

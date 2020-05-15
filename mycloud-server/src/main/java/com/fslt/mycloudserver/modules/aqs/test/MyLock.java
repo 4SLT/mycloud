@@ -47,7 +47,8 @@ public class MyLock {
      */
     public void lock() {
         while (true) {
-            if (MyUnSafe.unsafe.compareAndSwapInt(this, stateOffset, 0, 1)) {
+            //通过o(当前对象)加上offset(偏移量地址)，定位到底层中对应的值，然后把这个值和i进行比，如果一样，就更新底层中对应的值为i1
+                if (MyUnSafe.unsafe.compareAndSwapInt(this, stateOffset, 0, 1)) {
                 System.out.println("线程：" + Thread.currentThread().getName() + "获得了锁");
                 break;
             } else {
