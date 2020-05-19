@@ -66,6 +66,19 @@
             <version>5.2.2.RELEASE</version>
         </dependency>
 
+        <!--canal数据库监控-->
+        <dependency>
+            <groupId>com.alibaba.otter</groupId>
+            <artifactId>canal.client</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <!-- mysql binlog解析 -->
+        <dependency>
+            <groupId>com.github.shyiko</groupId>
+            <artifactId>mysql-binlog-connector-java</artifactId>
+            <version>0.13.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
