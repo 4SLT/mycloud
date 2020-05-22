@@ -15,6 +15,9 @@ import java.util.List;
 
 /**
  * @description: CanalTest
+ * 参考链接：https://www.jianshu.com/p/1ce23e61e547
+ * https://www.cnblogs.com/java-spring/p/8930740.html
+ * https://www.jianshu.com/p/87944efe1005
  * @date: 2020/5/19 16:19
  * @author: 林宗雄
  * @version: 1.0
